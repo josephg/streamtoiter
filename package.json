@@ -1,0 +1,18 @@
+{
+  "name": "streamtoiter",
+  "version": "1.0.0",
+  "description": "Simple stream API for for await()",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc"
+  },
+  "repository": "git@github.com:josephg/streamtoiter.git",
+  "author": "Joseph Gentle <me@josephg.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^11.13.0",
+    "typescript": "^3.4.2"
+  }
+}

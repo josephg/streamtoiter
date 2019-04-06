@@ -11,7 +11,7 @@ for await (const item of iter) {
 from streams:
 
 ```javascript
-const stream = require('awaitstream')()
+const stream = require('ministreamiterator')()
 
 // Send items into the stream
 setInterval(() => stream.append(Date.now()), 1000)

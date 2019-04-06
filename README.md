@@ -11,7 +11,7 @@ for await (const item of iter) {
 from a stream:
 
 ```javascript
-const stream = require('streamtoiter')()
+const stream = require('streamtoiterator')()
 
 // Send items into the stream
 setInterval(() => stream.append(Date.now()), 1000)

@@ -1,5 +1,5 @@
 {
-  "name": "streamtoiter",
+  "name": "streamtoiterator",
   "version": "1.0.0",
   "description": "Simple stream API for for await()",
   "main": "index.js",

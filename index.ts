@@ -15,7 +15,7 @@ export interface Stream<T> {
 }
 
 // Note: onDone is not called if the producer calls .end().
-export default function<T>(onDone?: () => void): Stream<T> {
+export default function streamToIter<T>(onDone?: () => void): Stream<T> {
   // At least one of these lists is empty at all times.
   const buffer: T[] = []
   const resolvers: ([(v: IteratorResult<T>) => void, (err: any) => void])[] = []
@@ -94,3 +94,5 @@ export default function<T>(onDone?: () => void): Stream<T> {
     iter,
   }
 }
+
+module.exports = streamToIter

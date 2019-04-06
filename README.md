@@ -1,6 +1,6 @@
-# Stream to iter
+# Async stream
 
-This is a tiny library for creating an async iterable object:
+This is a tiny library for creating async iterable objects:
 
 ```javascript
 for await (const item of iter) {
@@ -8,19 +8,24 @@ for await (const item of iter) {
 }
 ```
 
-from a stream:
+from streams:
 
 ```javascript
-const stream = require('streamtoiterator')()
+const stream = require('asyncstream')()
 
 // Send items into the stream
 setInterval(() => stream.append(Date.now()), 1000)
 
-// And consume them using for-await syntax:
+// And consume them using a for-await loop:
 for await (const time of stream.iter) {
   console.log('the time is', time)
 }
 ```
+
+Its similar to [streamiterator](https://www.npmjs.com/package/streamiterator), except:
+
+- There is no out-of-the-box iteroperability with nodejs stream objects (because node streams are big and complicated)
+- This library has no external dependancies. Minified and gzipped, this library adds only a couple hundred bytes to your bundle.
 
 
 ## Lifecycle

@@ -1,4 +1,4 @@
-# Async stream
+# Async iterable stream
 
 This is a tiny library for creating async iterable objects:
 
@@ -11,7 +11,7 @@ for await (const item of iter) {
 from streams:
 
 ```javascript
-const stream = require('asyncstream')()
+const stream = require('awaitstream')()
 
 // Send items into the stream
 setInterval(() => stream.append(Date.now()), 1000)

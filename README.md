@@ -50,9 +50,9 @@ console.log('done')
 
 The consumer can indicate they are done consuming the stream by calling `iter.return()`:
 
-When the consumer closes the stream, the stream will call a registered `onClosed` function. This function is registered by passing it as the first (and only) argument to the streamToIter constructor. (Eg `streamToIter(() => console.log('closed'))`)
+When the consumer closes the stream, the stream will call a registered `onDone` function. This function is registered by passing it as the first (and only) argument to the streamToIter constructor. (Eg `streamToIter(() => console.log('closed'))`)
 
-*NOTE:* The onClosed function is only called if the consumer closes the stream via `iter.return()`. It is not called if the producer closes the stream via `stream.end()`.
+*NOTE:* The onDone function is only called if the consumer closes the stream via `iter.return()`. It is not called if the producer closes the stream via `stream.end()`.
 
 ```javascript
 let timer
@@ -84,7 +84,7 @@ for await (const item of stream.iter) {
 } // throws Error('oops!')!
 ```
 
-Once an error is injected into the stream, the stream is considered to be done. No further events can be injected into the stream. The stream currently *does* call a registered onClose handler here - I'm not sure if thats the right call but this decision will not change without a bump to the major version of this library.
+Once an error is injected into the stream, the stream is considered to be done. No further events can be injected into the stream. The stream currently *does* call a registered `onDone` handler here - I'm not sure if thats the right call but this decision will not change without a bump to the major version of this library.
 
 
 ## Using streamtoiter without for-await support

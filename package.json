@@ -8,12 +8,14 @@
     "prepublish": "npm run build",
     "build": "tsc"
   },
-  "files": ["index.*"],
+  "files": [
+    "index.*"
+  ],
   "repository": "git@github.com:josephg/streamtoiter.git",
   "author": "Joseph Gentle <me@josephg.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^11.13.0",
-    "typescript": "^3.4.2"
+    "@types/node": "^20.8.7",
+    "typescript": "^5.2.2"
   }
 }

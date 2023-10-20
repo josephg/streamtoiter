@@ -94,5 +94,3 @@ export function createIterableStream<T>(onDone?: () => void): Stream<T> {
     iter,
   }
 }
-
-module.exports = streamToIter

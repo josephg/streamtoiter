@@ -11,7 +11,9 @@ for await (const item of iter) {
 from streams:
 
 ```javascript
-const stream = require('ministreamiterator')()
+import { createIterableStream } from 'ministreamiterator'
+
+const stream = createIterableStream()
 
 // Send items into the stream
 setInterval(() => stream.append(Date.now()), 1000)
@@ -35,7 +37,7 @@ The stream has 2 states: Open and closed. The stream can be closed either from t
 To close the stream from the producer, call `stream.end()`:
 
 ```javascript
-const stream = streamToIter()
+const stream = createIterableStream()
 stream.append(1)
 stream.append(2)
 stream.end() // Producer indicates there are no more events to send into the stream
@@ -56,7 +58,7 @@ When the consumer closes the stream, the stream will call a registered `onClosed
 
 ```javascript
 let timer
-const stream = streamToIter(() => {
+const stream = createIterableStream(() => {
   clearInterval(timer) // Stop firing the interval once the consumer has finished reading from the stream
 })
 timer = setInterval(() => stream.append(Date.now()), 1000)
@@ -73,7 +75,7 @@ stream.iter.return()
 You can also inject errors into the stream. Errors will cause an exception to be thrown from the `for await` loop:
 
 ```javascript
-const stream = streamToIter()
+const stream = createIterableStream()
 stream.throw(new Error('oops!'))
 
 // ...
@@ -85,26 +87,3 @@ for await (const item of stream.iter) {
 ```
 
 Once an error is injected into the stream, the stream is considered to be done. No further events can be injected into the stream. The stream currently *does* call a registered onClose handler here - I'm not sure if thats the right call but this decision will not change without a bump to the major version of this library.
-
-
-## Using streamtoiter without for-await support
-
-Some older javascript implementations (node 8, IE11, etc) don't support for-await syntax. To use this library, either use a transpiler like babel or typescript, or iterate over the stream using one of these polyfill-esque syntaxes:
-
-```javascript
-// Option 1: adapt a for loop:
-for (let item = await stream.iter.next(); !item.done; item = await stream.iter.next()) {
-  console.log(item.value)
-}
-
-// Option 2: Adapt a while loop:
-while(true) {
-  let item = await stream.iter.next()
-  if (item.done) break
-
-  console.log(item.value)
-}
-```
-
-Or some variant thereof.
-

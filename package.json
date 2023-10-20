@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Simple stream API for for await()",
   "main": "index.js",
+  "type": "module",
   "types": "index.d.ts",
   "scripts": {
     "prepublish": "npm run build",
